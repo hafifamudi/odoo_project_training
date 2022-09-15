@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- kredit.userlelang tree view -->
+    <record id="kredit_userlelang_view_tree" model="ir.ui.view">
+        <field name="name">List User Lelang</field>
+        <field name="model">kredit.userlelang</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="user_name" />
+                <field name="user_address" />
+                <field name="user_phone_number" />
+                <field name="barang_id" widget="many2many_tags"/>
+                <field name="user_bid" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- kredit.userlelang form view -->
+    <record id="kredit_userlelang_view_form" model="ir.ui.view">
+        <field name="name">Form User Daftar Barang Lelang</field>
+        <field name="model">kredit.userlelang</field>
+        <field name="arch" type="xml">
+            <form string="Form User Lelang">
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <!-- Add your fields here -->
+                            <field name="user_name" />
+                            <field name="user_address" />
+                            <field name="user_phone_number" />
+                            <field name="user_bid"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="user_photo" widget="image"/>
+                        </group>
+                    </group>
+                    <field name="barang_id">
+                        <tree>
+                            <field name="barang_name" />
+                            <field name="barang_masa_aktif" />
+                            <field name="barang_due_date" />
+                            <field name="total_partisipan_lelang" />
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- kredit.userlelang action window -->
+    <record id="kredit_userlelang_action" model="ir.actions.act_window">
+        <field name="name">Daftar User Barang Lelang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kredit.userlelang</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="kredit_user_lelang_menu_act" name="List User Lelang" parent="user_lelang_menu_categ" action="kredit_userlelang_action" sequence="10"/>
+</odoo>

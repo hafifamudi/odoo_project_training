@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem
+        id="kredit_app_menu_root"
+        name="Credito"
+        sequence="10"/>
+    
+    <!-- Child Menu -->
+    <!-- This Menu Item Must have a parent -->
+    <menuitem 
+        id="debitur_menu_categ" 
+        name="Debitur" 
+        parent="kredit_app_menu_root" 
+        sequence="20"/>
+
+    <menuitem 
+        id="kreditur_menu_categ" 
+        name="Kreditur" 
+        parent="kredit_app_menu_root" 
+        sequence="30"/>
+
+    <menuitem 
+        id="barang_menu_categ" 
+        name="Barang Lelang" 
+        parent="kredit_app_menu_root" 
+        sequence="40"/>
+
+    <menuitem 
+        id="user_lelang_menu_categ" 
+        name="Partisipan Lelang" 
+        parent="kredit_app_menu_root" 
+        sequence="50"/>
+
+    <menuitem 
+        id="report_menu_categ" 
+        name="Report" 
+        parent="kredit_app_menu_root" 
+        sequence="60"/>
+</odoo>

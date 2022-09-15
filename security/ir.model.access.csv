@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kredit_barang,kredit.barang,model_kredit_barang,,1,1,1,1
+access_kredit_debitur,kredit.debitur,model_kredit_debitur,,1,1,1,1
+access_kredit_kreditur,kredit.kreditur,model_kredit_kreditur,,1,1,1,1
+access_kredit_userlelang,kredit.userlelang,model_kredit_userlelang,,1,1,1,1
+access_kredit_debiturreport,kredit.debiturreport,model_kredit_debiturreport,,1,1,1,1

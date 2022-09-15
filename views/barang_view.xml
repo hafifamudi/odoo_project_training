@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- kredit.barang tree view -->
+    <record id="kredit_barang_view_tree" model="ir.ui.view">
+        <field name="name">List barang</field>
+        <field name="model">kredit.barang</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="barang_name" />
+                <field name="total_partisipan_lelang" />
+                <field name="barang_status"
+                decoration-success="barang_status == 'barang_sold'" 
+                decoration-warning="barang_status == 'barang_bid_process'"
+                widget="badge"
+                 />
+                <field name="barang_masa_aktif"
+                decoration-danger="barang_masa_aktif == 'barang_out_of_date'" 
+                decoration-warning="barang_masa_aktif == 'barang_in_of_date'"
+                widget="badge"
+                 />
+                <field name="barang_due_date" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- kredit.barang form view -->
+    <record id="kredit_barang_view_form" model="ir.ui.view">
+        <field name="name">Form Daftar barang</field>
+        <field name="model">kredit.barang</field>
+        <field name="arch" type="xml">
+            <form string="barang barang">
+                <header>
+                    <button string="Sold" name="action_sold" attrs="{'invisible' : [('barang_status', '=', 'barang_sold')]}" type="object" class="btn btn-danger"/>
+                    <field name="barang_status" widget="statusbar" statusbar_visible="barang_bid_process,barang_sold"/>
+                </header>
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <!-- Add your fields here -->
+                            <field name="barang_name" />
+                            <field name="barang_due_date" />
+                            <field name="kreditur_id" />
+                        </group>
+                        <group name="group_right">
+                            <field name="barang_photo" widget="image"/>
+                        </group>
+                    </group>
+                    <field name="user_id">
+                        <tree>
+                            <field name="user_name" />
+                            <field name="user_address" />
+                            <field name="user_phone_number" />
+                            <field name="user_address" />
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- kredit.barang action window -->
+    <record id="kredit_barang_action" model="ir.actions.act_window">
+        <field name="name">Daftar Barang Lelang</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kredit.barang</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="kredit_barang_menu_act" name="List barang" parent="barang_menu_categ" action="kredit_barang_action" sequence="10"/>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="wizzard_debiturreport_pdf" model="ir.actions.report">
+        <field name="name">Print Report</field>
+        <field name="model">kredit.debiturreport</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">kredit_app.wizzard_debiturreport_pdf_tmp</field>
+        <field name="report_file">kredit_app.wizzard_debiturreport_pdf_tmp</field>
+        <field name="binding_model_id" ref="model_kredit_debitur"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

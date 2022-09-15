@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- kredit.debitur tree view -->
+    <record id="kredit_debitur_view_tree" model="ir.ui.view">
+        <field name="name">List Debitur</field>
+        <field name="model">kredit.debitur</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="debitur_name" />
+                <field name="debitur_phone_number" />
+                <field name="state" decoration-success="state == 'approved'" decoration-warning="state == 'pending'" decoration-danger="state == 'rejected'" widget="badge" />
+                <field name="debitur_status" decoration-success="debitur_status == 'debitur_sudah_lunas'" decoration-danger="debitur_status == 'debitur_belum_lunas'" widget="badge" />
+                <field name="debitur_status_waktu" decoration-muted="debitur_status_waktu == 'debitur_belum_jatuh_tempo'" decoration-danger="debitur_status_waktu == 'debitur_sudah_jatuh_tempo'" widget="badge" />
+                <field name="debitur_due_date" />
+                <field name="kreditur_id" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- kredit.debitur form view -->
+    <record id="kredit_debitur_view_form" model="ir.ui.view">
+        <field name="name">Form Daftar Debitur</field>
+        <field name="model">kredit.debitur</field>
+        <field name="arch" type="xml">
+            <form string="debitur Debitur">
+                <header>
+                    <button string="Pending Approval" name="action_pending" type="object" states="draft" class="btn btn-warning"/>
+                    <button string="Approved" name="action_approved" type="object" states="pending" class="btn btn-success"/>
+                    <button string="Rejected" name="action_rejected" type="object" states="pending" class="btn btn-danger"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,pending,approved"/>
+                </header>
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <!-- Add your fields here -->
+                            <field name="debitur_name" />
+                            <field name="debitur_job" />
+                            <field name="debitur_phone_number" />
+                            <field name="debitur_borrow_date" />
+                            <field name="debitur_due_date" />
+                            <field name="debitur_total_borrow" />
+                            <field name="debitur_status" />
+                            <field name="kreditur_id" />
+                        </group>
+                        <group name="group_right">
+                            <field name="debitur_ktp" widget="image"/>
+                            <field name="debitur_photo" widget="image"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- kredit.debitur search view -->
+    <record id="kredit_debitur_view_search" model="ir.ui.view">
+        <field name="name">Debitur Filters </field>
+        <field name="model">kredit.debitur</field>
+        <field name="arch" type="xml">
+            <search string="Cari...">
+                <!-- Add your fields here -->
+                <field name="debitur_name"/>
+                <field name="debitur_status"/>
+                <field name="debitur_status_waktu"/>
+
+                <!-- default filter -->
+                <filter name="debitur_status" string="Belum Lunas" domain="[('debitur_status','=','debitur_belum_lunas')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- kredit.debitur action window -->
+    <record id="kredit_debitur_action" model="ir.actions.act_window">
+        <field name="name">Daftar Debitur</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kredit.debitur</field>
+        <field name="view_mode">tree,form</field>
+          <field name="context">
+            {
+                'search_default_debitur_status': 'debitur_belum_lunas',
+                'default_debitur_status': 'debitur_belum_lunas'
+            }
+        </field>
+    </record>
+
+    <menuitem id="kredit_debitur_menu_act" name="List Debitur" parent="debitur_menu_categ" action="kredit_debitur_action" sequence="10"/>
+</odoo>

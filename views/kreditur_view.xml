@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- kredit.kreditur tree view -->
+    <record id="kredit_kreditur_view_tree" model="ir.ui.view">
+        <field name="name">List kreditur</field>
+        <field name="model">kredit.kreditur</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Add your fields here -->
+                <field name="kreditur_name" />
+                <field name="kreditur_status" decoration-success="kreditur_status == 'kreditur_active'" decoration-muted="kreditur_status == 'kreditur_inactive'" widget="badge"/>
+                <field name="total_debitur" />
+                <field name="total_barang" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- kredit.kreditur form view -->
+    <record id="kredit_kreditur_view_form" model="ir.ui.view">
+        <field name="name">Form Daftar kreditur</field>
+        <field name="model">kredit.kreditur</field>
+        <field name="arch" type="xml">
+            <form string="Daftar Kreditur">
+                <header>
+                    <button string="Active" name="action_active" type="object" class="btn btn-primary" attrs="{'invisible' : [('kreditur_status', '=', 'kreditur_active')]}"/>
+                    <button string="Inactive" name="action_inactive" type="object" class="btn btn-danger" attrs="{'invisible' : [('kreditur_status', '=', 'kreditur_inactive')]}"/>
+                </header>
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <!-- Add your fields here -->
+                            <field name="kreditur_name" />
+                            <field name="kreditur_status" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="list_debitur" string="List Debitur">
+                            <field name="debitur_ids">
+                                <tree>
+                                    <field name="debitur_name" />
+                                    <field name="debitur_phone_number" />
+                                    <field name="debitur_borrow_date" />
+                                    <field name="debitur_due_date" />
+                                    <field name="debitur_total_borrow" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="list_barang_lelang" string="List Barang Lelang">
+                            <field name="barang_ids">
+                                <tree>
+                                    <field name="barang_name" />
+                                    <field name="barang_status" />
+                                    <field name="barang_due_date" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- kredit.kreditur action window -->
+    <record id="kredit_kreditur_action" model="ir.actions.act_window">
+        <field name="name">Daftar kreditur</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">kredit.kreditur</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="kredit_kreditur_menu_act" name="List Kreditur" parent="kreditur_menu_categ" action="kredit_kreditur_action" sequence="10"/>
+
+</odoo>
